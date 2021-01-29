@@ -1,5 +1,9 @@
-console.log("Hello World")
+import express from "express"
 
-console.log("Hello World")
+const app = express()
 
-console.log("Hello World")
+app.get("/", (req: express.Request, res: express.Response) => {
+    res.status(200).send('Hello world');
+})
+
+app.listen(3000)

@@ -23,7 +23,8 @@ services:
   api:
     command: "npm run start:dev"
     ports:
-      - "3030:3030"
+      - "3030:3000"
+      - "9229:9229"
     depends_on:
       - postgres
 
