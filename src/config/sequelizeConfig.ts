@@ -1,4 +1,4 @@
-import { Sequelize, Options } from 'sequelize';
+import { Options } from 'sequelize';
 
 const {
     POSTGRES_DB,
@@ -24,4 +24,4 @@ const options: Options = {
   logging: console.log,
 };
 
-export default new Sequelize(options);
+export default options;
