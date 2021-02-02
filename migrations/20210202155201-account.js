@@ -1,8 +1,8 @@
 'use strict';
 
 module.exports = {
-  up: async (queryInterface) => {
-    queryInterface.sequelize.query(`
+    up: async (queryInterface) => {
+        queryInterface.sequelize.query(`
       BEGIN;
 
       CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
@@ -16,11 +16,11 @@ module.exports = {
       );
 
       END;
-    `)
-  },
+    `);
+    },
 
-  down: async (queryInterface) => {
-    queryInterface.sequelize.query(`
-    `)
-  }
+    down: async (queryInterface) => {
+        queryInterface.sequelize.query(`
+    `);
+    },
 };

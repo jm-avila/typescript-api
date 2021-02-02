@@ -8,7 +8,7 @@ export const createModels = () => {
     const db = {
         sequelize,
         Sequelize,
-        Account: AccountFactory(sequelize)
+        Account: AccountFactory(sequelize),
     };
 
     return db;
