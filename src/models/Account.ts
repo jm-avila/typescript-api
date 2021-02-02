@@ -22,7 +22,7 @@ export const AccountFactory = (sequelize: Sequelize) => AccountModel.init(
             defaultValue: UUIDV4,
         },
         email: {
-            type: STRING(240),
+            type: STRING(100),
             unique: true,
             allowNull: false,
             validate: {
@@ -30,8 +30,14 @@ export const AccountFactory = (sequelize: Sequelize) => AccountModel.init(
             },
         },
         password: {
-            type: STRING(255),
+            type: STRING(250),
             allowNull: false,
+            validate: {
+                min:{
+                    args: [8],
+                    msg:"Minimum 8 characters required in password."
+                }
+            }
         }
     },
     {
