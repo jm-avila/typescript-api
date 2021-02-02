@@ -1,6 +1,13 @@
 import app from "./app"
-const port = process.env.HTTP_PORT
+import sequelize from "./db/sequelize"
 
-app.listen(port,()=>{
-    console.log(`Server listening at http://localhost:${port}`);
-}) 
+const port = process.env.HTTP_PORT;
+
+(async () => {
+
+    await sequelize.authenticate();
+
+    app.listen(port,()=>{
+        console.log(`Server listening at http://localhost:${port}`);
+    })
+})()
