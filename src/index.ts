@@ -1,9 +1,9 @@
-import Sequelize from 'sequelize';
 import { createModels } from './models';
 import app from "./app"
 
-const port = process.env.HTTP_PORT;
 export const db = createModels();
+
+const port = process.env.HTTP_PORT;
 
 (async () => {
     await db.sequelize.authenticate()
