@@ -1,14 +1,18 @@
 import { Sequelize, Model, UUID, UUIDV4, STRING } from 'sequelize';
 
-class AccountModel extends Model {
+export class AccountModel extends Model {
     public readonly id!: string;
 
     public email!: string;
 
     public password!: string;
+
+    public readonly createdAt!: Date | string;
+
+    public readonly updatedAt!: Date | string;
 }
 
-export const AccountFactory = (sequelize: Sequelize) =>
+export const AccountFactory = (sequelize: Sequelize): typeof AccountModel => {
     AccountModel.init(
         {
             id: {
@@ -43,3 +47,6 @@ export const AccountFactory = (sequelize: Sequelize) =>
             modelName: 'account',
         },
     );
+
+    return AccountModel;
+};

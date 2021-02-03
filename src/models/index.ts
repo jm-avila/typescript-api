@@ -1,8 +1,12 @@
 import { Sequelize } from 'sequelize';
 import options from '../config/sequelizeConfig';
-import { AccountFactory } from './Account';
+import { AccountFactory, AccountModel } from './Account';
 
-export const createModels = () => {
+export const createModels = (): {
+    sequelize: Sequelize;
+    Sequelize: typeof Sequelize;
+    Account: typeof AccountModel;
+} => {
     const sequelize = new Sequelize(options);
 
     const db = {

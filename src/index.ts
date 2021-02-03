@@ -1,7 +1,5 @@
-import { createModels } from './models';
 import app from './app';
-
-export const db = createModels();
+import db from './db';
 
 const port = process.env.HTTP_PORT;
 

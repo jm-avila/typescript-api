@@ -1,12 +1,18 @@
+const { hash } = require('bcryptjs');
+
+const salt = process.env.SALT || 10;
+
 module.exports = {
     up: async (queryInterface) => {
         const transaction = await queryInterface.sequelize.transaction();
+        const password = await hash('temp_password', salt);
+
         await queryInterface.bulkInsert(
             'account',
             [
                 {
                     email: 'admin@mail.com',
-                    password: 'temp_password',
+                    password,
                 },
             ],
             { transaction },

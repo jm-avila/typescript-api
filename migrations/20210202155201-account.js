@@ -12,6 +12,8 @@ module.exports = {
         id UUID DEFAULT uuid_generate_v4(),
         email varchar(100) NOT NULL UNIQUE,
         password varchar(250) NOT NULL,
+        created_at timestamp with time zone NOT NULL DEFAULT now(),
+        updated_at timestamp with time zone NOT NULL DEFAULT now(),
         PRIMARY KEY (id)
       );
 
@@ -21,6 +23,11 @@ module.exports = {
 
     down: async (queryInterface) => {
         queryInterface.sequelize.query(`
+      BEGIN;
+
+      DROP TABLE public.account;
+
+      END;
     `);
     },
 };
