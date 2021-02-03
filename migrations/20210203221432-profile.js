@@ -13,7 +13,10 @@ module.exports = {
         birthdate timestamptz NOT NULL,
         created_at timestamptz NOT NULL DEFAULT now(),
         updated_at timestamptz NOT NULL DEFAULT now(),
-        PRIMARY KEY (id)
+        PRIMARY KEY (id),
+        FOREIGN KEY (id)
+          REFERENCES public.account (id)
+          ON DELETE CASCADE
       );
 
       END;

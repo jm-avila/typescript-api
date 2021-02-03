@@ -1,19 +1,25 @@
-import { Sequelize } from 'sequelize';
-import options from '../config/sequelizeConfig';
+import DataTypes, { Sequelize } from 'sequelize';
 import { AccountFactory, AccountModel } from './Account';
+import { ProfileFactory, ProfileModel } from './Profile';
 
-export const createModels = (): {
+export const createModels = (
+    sequelize: Sequelize,
+): {
     sequelize: Sequelize;
-    Sequelize: typeof Sequelize;
     Account: typeof AccountModel;
+    Profile: typeof ProfileModel;
 } => {
-    const sequelize = new Sequelize(options);
-
     const db = {
         sequelize,
-        Sequelize,
-        Account: AccountFactory(sequelize),
+        Account: AccountFactory(sequelize, DataTypes),
+        Profile: ProfileFactory(sequelize, DataTypes),
     };
+
+    Object.values(db).forEach((model) => {
+        if ('associate' in model) {
+            model.associate(db);
+        }
+    });
 
     return db;
 };

@@ -1,4 +1,4 @@
-import { Sequelize, Model, UUID, UUIDV4, STRING } from 'sequelize';
+import { Sequelize, Model, DataTypes } from 'sequelize';
 
 export class AccountModel extends Model {
     public readonly id!: string;
@@ -12,16 +12,16 @@ export class AccountModel extends Model {
     public readonly updatedAt!: Date | string;
 }
 
-export const AccountFactory = (sequelize: Sequelize): typeof AccountModel => {
+export const AccountFactory = (sequelize: Sequelize, dataTypes: typeof DataTypes): typeof AccountModel => {
     AccountModel.init(
         {
             id: {
-                type: UUID,
+                type: dataTypes.UUID,
                 primaryKey: true,
-                defaultValue: UUIDV4,
+                defaultValue: dataTypes.UUIDV4,
             },
             email: {
-                type: STRING(100),
+                type: dataTypes.STRING(100),
                 unique: true,
                 allowNull: false,
                 validate: {
@@ -29,7 +29,7 @@ export const AccountFactory = (sequelize: Sequelize): typeof AccountModel => {
                 },
             },
             password: {
-                type: STRING(250),
+                type: dataTypes.STRING(250),
                 allowNull: false,
                 validate: {
                     min: {
